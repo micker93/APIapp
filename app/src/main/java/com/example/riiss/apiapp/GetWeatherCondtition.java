@@ -6,8 +6,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,15 +30,12 @@ public class GetWeatherCondtition extends AsyncTask<String, Void, JSONObject> {
 
     public GetWeatherCondtition(ImageView imageView ) {
 
-
         this.WeatherIcon=imageView;
 
     }
 
-
     @Override
     protected JSONObject doInBackground(String... strings) {
-
 
 
         try {
@@ -71,7 +66,6 @@ public class GetWeatherCondtition extends AsyncTask<String, Void, JSONObject> {
     protected void onPostExecute(JSONObject jsonObjekt) {
 
 
-
         String iconUrl = null;
 
         try {
@@ -99,10 +93,11 @@ public class GetWeatherCondtition extends AsyncTask<String, Void, JSONObject> {
 
             Bitmap bitmap = null;
             try {
-                // Download Image from URL
+
                 InputStream input = new java.net.URL(imageURL).openStream();
-                // Decode Bitmap
+
                 bitmap = BitmapFactory.decodeStream(input);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

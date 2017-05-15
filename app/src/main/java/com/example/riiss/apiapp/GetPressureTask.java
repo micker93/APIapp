@@ -86,7 +86,7 @@ public class GetPressureTask extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String pressure) {
 
-        textView.setText(pressure);
+        textView.setText(pressure + " hpa");
 
     }
 }

@@ -1,34 +1,29 @@
 package com.example.riiss.apiapp;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
+
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 
 public class MainActivity extends AppCompatActivity {
 
     String city="";
     String country="";
-    String weather="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +31,40 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         EditText editText=(EditText) findViewById(R.id.editText);
+        TextView textView=(TextView) findViewById(R.id.textView5);
         editText.setText("");
 
+
+        Date today = Calendar.getInstance().getTime();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd, HH:mm");
+        String folderName = formatter.format(today);
+        textView.setText(folderName);
+
+        if(editText.getText().toString().trim().length()==0){
+
+            editText.setText("Stad..");
+            editText.setTextColor(Color.GRAY);
+        }
+        else
+            editText.setTextColor(Color.BLACK);
+
+//rsdrfetert
+        PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
+                getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
+
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+                // TODO: Get info about the selected place.
+
+            }
+
+            @Override
+            public void onError(Status status) {
+                // TODO: Handle the error.
+
+            }
+        });
 
     }
 
@@ -52,6 +79,15 @@ public class MainActivity extends AppCompatActivity {
         TextView textView2=(TextView) findViewById(R.id.textViewpressure);
         //imageviews
         ImageView imageView=(ImageView)findViewById(R.id.imageView2);
+
+
+        if(editText.getText().toString().trim().length()==0){
+
+            editText.setText("Stad..");
+            editText.setTextColor(Color.GRAY);
+        }
+        else
+            editText.setTextColor(Color.BLACK);
 
 
         textView1.setText(editText.getText());
