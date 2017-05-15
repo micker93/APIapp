@@ -3,9 +3,7 @@
     package="com.example.riiss.apiapp">
 <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 
-    <meta-data
-        android:name="com.google.android.geo.API_KEY"
-        android:value="AIzaSyC2Qoo27M7apsNVhxCzGL3wl5HTmAIg1gk"/>
+
 
     <application
         android:allowBackup="true"
@@ -24,6 +22,9 @@
 
             </intent-filter>
         </activity>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyC2Qoo27M7apsNVhxCzGL3wl5HTmAIg1gk"/>
     </application>
 
 </manifest>

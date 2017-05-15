@@ -30,9 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        EditText editText=(EditText) findViewById(R.id.editText);
         TextView textView=(TextView) findViewById(R.id.textView5);
-        editText.setText("");
 
 
         Date today = Calendar.getInstance().getTime();
@@ -40,15 +38,6 @@ public class MainActivity extends AppCompatActivity {
         String folderName = formatter.format(today);
         textView.setText(folderName);
 
-        if(editText.getText().toString().trim().length()==0){
-
-            editText.setText("Stad..");
-            editText.setTextColor(Color.GRAY);
-        }
-        else
-            editText.setTextColor(Color.BLACK);
-
-//rsdrfetert
         PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
                 getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
 
@@ -56,12 +45,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPlaceSelected(Place place) {
                 // TODO: Get info about the selected place.
-
+                city=place.getName().toString();
             }
 
             @Override
             public void onError(Status status) {
                 // TODO: Handle the error.
+
 
             }
         });
@@ -71,27 +61,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void Searchbutton(View v){
 
-        //edittexts
-        EditText editText=(EditText) findViewById(R.id.editText);
+
+
         //textviews
-        TextView textView = (TextView) findViewById(R.id.textViewtemp);
-        TextView textView1=(TextView) findViewById(R.id.textView4);
-        TextView textView2=(TextView) findViewById(R.id.textViewpressure);
+        final TextView textView = (TextView) findViewById(R.id.textViewtemp);
+        final TextView textView2=(TextView) findViewById(R.id.textViewpressure);
         //imageviews
         ImageView imageView=(ImageView)findViewById(R.id.imageView2);
 
 
-        if(editText.getText().toString().trim().length()==0){
-
-            editText.setText("Stad..");
-            editText.setTextColor(Color.GRAY);
-        }
-        else
-            editText.setTextColor(Color.BLACK);
-
-
-        textView1.setText(editText.getText());
-        city=editText.getText().toString();
 
         String url = String.format("http://api.openweathermap.org/data/2.5/weather?q=" + city
                 +"," + country +"&appid=69585efc9d6d443139ff3fc87c85a87a&units=metric");
