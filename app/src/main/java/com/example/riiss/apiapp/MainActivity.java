@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 // TODO: Get info about the selected place.
                 Button button=(Button)findViewById(R.id.buttonid);
                 button.setEnabled(true);
-
+                //strängen får en plats
                 city=place.getName().toString();
 
             }
