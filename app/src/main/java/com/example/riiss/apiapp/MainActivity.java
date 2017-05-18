@@ -5,6 +5,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,11 +31,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         TextView textView=(TextView) findViewById(R.id.textView5);
+        Button button=(Button)findViewById(R.id.buttonid);
 
         Date today = Calendar.getInstance().getTime();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd, HH:mm");
         String folderName = formatter.format(today);
         textView.setText(folderName);
+
 
         final PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
                 getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
@@ -43,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPlaceSelected(Place place) {
                 // TODO: Get info about the selected place.
+                Button button=(Button)findViewById(R.id.buttonid);
+                button.setEnabled(true);
 
                 city=place.getName().toString();
 
@@ -61,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        button.setEnabled(false);
 
     }
 
