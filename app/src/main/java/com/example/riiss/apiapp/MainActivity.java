@@ -47,10 +47,11 @@ public class MainActivity extends AppCompatActivity {
             public void onPlaceSelected(Place place) {
                 // TODO: Get info about the selected place.
                 Button button=(Button)findViewById(R.id.buttonid);
+                final TextView textView1=(TextView) findViewById(R.id.textviewname);
                 button.setEnabled(true);
-                //strängen får en plats
-                city=place.getName().toString();
 
+                city=place.getName().toString();
+                textView1.setText(city);
             }
 
             @Override
@@ -77,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         //textviews
         final TextView textView = (TextView) findViewById(R.id.textViewtemp);
         final TextView textView2=(TextView) findViewById(R.id.textViewpressure);
+
         //imageviews
         ImageView imageView=(ImageView)findViewById(R.id.imageView2);
 
